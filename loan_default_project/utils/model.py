@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import joblib
 import shap
@@ -6,8 +7,12 @@ import shap
 def load_model_and_explainer():
     """Loads model, features, and creates SHAP explainer."""
     try:
-        model = joblib.load('models/xgb_model_engineered.joblib')
-        model_features = joblib.load('models/model_features_engineered.joblib')
+        base_dir = os.path.dirname(os.path.dirname(__file__))
+        model_path = os.path.join(base_dir, 'models', 'xgb_model_engineered.joblib')
+        features_path = os.path.join(base_dir, 'models', 'model_features_engineered.joblib')
+        
+        model = joblib.load(model_path)
+        model_features = joblib.load(features_path)
         explainer = shap.TreeExplainer(model)
         return model, model_features, explainer
     except Exception as e:
