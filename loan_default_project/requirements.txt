@@ -1,0 +1,7 @@
+streamlit
+pandas
+numpy-financial
+xgboost
+shap
+matplotlib
+anthropic
